@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firstName = (EditText)findViewById(R.id.Edt_lstName);
+        firstName = (EditText)findViewById(R.id.Edt_frstName);
         lastName = (EditText)findViewById(R.id.Edt_lstName);
         pass = (EditText) findViewById(R.id.Edt_pass);
-        repass = (EditText) findViewById(R.id.Edt_pass);
+        repass = (EditText) findViewById(R.id.Edt_repass);
         email = findViewById(R.id.Edt_email);
 
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkDataEntered();
-                 Toast.makeText( getApplicationContext(), "Login processing", Toast.LENGTH_SHORT).show();
+       
             }
         });
     }
@@ -82,13 +82,23 @@ public class MainActivity extends AppCompatActivity {
             t.show();
         }
 
-        if (isEmpty(lastName)) {
+       else if (isEmpty(lastName)) {
             lastName.setError("Last name is required!");
         }
 
-        if (isEmail(email) == false) {
+       else if (isEmail(email) == false) {
             email.setError("Enter valid email!");
         }
 
+       else if (isEmpty(pass)){
+            Toast.makeText(this, "You must enter password to register!", Toast.LENGTH_SHORT).show();
+        }
+       else if(isEmpty(repass))
+        {
+            repass.setError("Re enter the password ");
+        }
+        else{
+                  Toast.makeText( getApplicationContext(), " Register successfully ", Toast.LENGTH_SHORT).show();
+        }
     }
 }
